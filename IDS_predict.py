@@ -8,14 +8,14 @@ model = joblib.load('model.pkl')
 scaler = joblib.load('scaler.pkl')
 
 # Ask for dataset
-file_name = input("📁 Enter dataset filename (CSV): ")
+file_name = input(" Enter dataset filename (CSV): ")
 
 if not os.path.exists(file_name):
     print("❌ File not found!")
     exit()
 
 # Load dataset
-print(f"🔄 Loading {file_name}...")
+print(f" Loading {file_name}...")
 df = pd.read_csv(file_name, header=None)
 
 # Preprocessing
@@ -32,7 +32,7 @@ X_scaled = scaler.transform(X)
 predictions = model.predict(X_scaled)
 
 # Print results
-print("\n🔎 Predictions:")
+print("\n Predictions:")
 for idx, pred in enumerate(predictions):
     label = "Normal" if pred == 0 else "Attack"
     print(f"Row {idx+1}: {label}")
@@ -40,6 +40,6 @@ for idx, pred in enumerate(predictions):
 # Summary
 attack_count = sum(predictions)
 normal_count = len(predictions) - attack_count
-print("\n📊 Summary:")
+print("\n Summary:")
 print(f"Normal: {normal_count}")
 print(f"Attack: {attack_count}")
